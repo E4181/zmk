@@ -7,6 +7,7 @@
 #pragma once
 
 #include <zmk/events/position_state_changed.h>
+#include <zmk/sensors.h>
 
 #define ZMK_LAYER_CHILD_LEN_PLUS_ONE(node) 1 +
 #define ZMK_KEYMAP_LAYERS_LEN                                                                      \
@@ -48,6 +49,16 @@ const struct zmk_behavior_binding *zmk_keymap_get_layer_binding_at_idx(zmk_keyma
                                                                        uint8_t binding_idx);
 int zmk_keymap_set_layer_binding_at_idx(zmk_keymap_layer_id_t layer, uint8_t binding_idx,
                                         const struct zmk_behavior_binding binding);
+
+#if ZMK_KEYMAP_HAS_SENSORS
+
+const struct zmk_behavior_binding *
+zmk_keymap_get_layer_sensor_binding_at_idx(zmk_keymap_layer_id_t layer, uint8_t sensor_idx);
+
+int zmk_keymap_set_layer_sensor_binding_at_idx(zmk_keymap_layer_id_t layer, uint8_t sensor_idx,
+                                               const struct zmk_behavior_binding binding);
+
+#endif /* ZMK_KEYMAP_HAS_SENSORS */
 
 #if IS_ENABLED(CONFIG_ZMK_KEYMAP_LAYER_REORDERING)
 
